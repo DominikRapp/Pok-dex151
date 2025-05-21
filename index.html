@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <title>Pokedéx</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="./assets/img/" type="image/x-icon">
+    <link rel="icon" href="./assets/img/img-pokeball.png" type="image/x-icon">
 </head>
-<body onload="renderAll()">
-    
-    <div id="pokedex_container" class="pokedex-container">
 
+<body onload="renderAll()">
+
+    <header>
+        <div class="header-left">
+            <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
+            <h1>Pokedéx</h1>
+        </div>
+        <div class="search-container">
+            <input type="search" id="search_input" placeholder="Nach Pokémon suchen..." oninput="filterPokemon()">
+        </div>
+    </header>
+
+    <div id="pokedex_container" class="pokedex-container">
+        <p>Hier kommt der Pokédexinhalt hin!</p>
     </div>
 
+    <footer>
+        <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
+        <h3>Created: May 2025</h3>
+        <div class="footer-links">
+            <div><a href="index.html">Impressum</a></div>|
+            <div><a href="index.html">AGB</a></div>|
+            <div><a href="index.html">Datenschutz</a></div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
+    <script src="/assets/scripts/pokedex-db.js"></script>
 
 </body>
+
 </html>
