@@ -10,11 +10,22 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
     color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
     display: flex;
     flex-direction: column;
+}
+
+header,
+footer {
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 header {
@@ -25,6 +36,9 @@ header {
     color: white;
     padding: 16px 32px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    top: 0;
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
 }
 
 .header-left {
@@ -61,13 +75,20 @@ header img {
 }
 
 .pokedex-container {
-    flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 24px;
     padding: 32px;
-    background-color: #1e1e1e;
+    background-color: #474747;
+    flex: 1 1 auto;
+    margin-top: 100px;
+    margin-bottom: 115px;
+    overflow-y: auto;
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+    border-top-left-radius: 50% 20px;
+    border-top-right-radius: 50% 20px;
 }
 
 .pokemon-card {
@@ -75,11 +96,11 @@ header img {
     border-radius: 16px;
     overflow: hidden;
     color: #ffffff;
-    box-shadow: 0 2px 6px rgba(255, 255, 255);
+    box-shadow: 0 2px 6px rgb(20, 20, 20);
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease;
-    border: 3px solid white;
+    border: 3px solid rgb(0, 0, 0);
 }
 
 .pokemon-card:hover {
@@ -87,7 +108,7 @@ header img {
 }
 
 .pokemon-card-header {
-    background-color: #201b63;
+    background-color: #d32f2f;
     padding: 10px 12px;
     display: flex;
     justify-content: space-between;
@@ -105,6 +126,8 @@ header img {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    border-top: 3px solid rgb(0, 0, 0);
+    border-bottom: 3px solid rgb(0, 0, 0);
 }
 
 .pokemon-card-image img {
@@ -113,6 +136,7 @@ header img {
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease;
     cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(255, 255, 255, 0.3));
 }
 
 .pokemon-card-image img:hover {
@@ -121,7 +145,7 @@ header img {
 }
 
 .pokemon-card-footer {
-    background-color: #201b63;
+    background-color: #ffffff;
     padding: 12px;
     display: flex;
     gap: 6px;
@@ -131,9 +155,18 @@ header img {
 
 footer {
     background-color: #ebebeb;
-    padding: 20px;
+    padding: 20px 0;
     color: #000000;
     text-align: center;
+    bottom: 0;
+    border-top-left-radius: 50% 20px;
+    border-top-right-radius: 50% 20px;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer img {
@@ -141,7 +174,6 @@ footer img {
 }
 
 .footer-links {
-    margin-top: 12px;
     display: flex;
     gap: 12px;
     justify-content: center;
@@ -159,4 +191,45 @@ footer img {
 
 .collor-black {
     color: black;
+}
+
+@media (max-width: 502px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .pokedex-container {
+        margin-top: 140px;
+        margin-bottom: 115px;
+    }
+}
+
+/* Scrollbalken Breite */
+.pokedex-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Scrollbalken Hintergrund */
+.pokedex-container::-webkit-scrollbar-track {
+    background: #2c2c2c;
+    /* Track-Farbe */
+    border-radius: 6px;
+}
+
+/* Scrollbalken Daumen (der bewegliche Teil) */
+.pokedex-container::-webkit-scrollbar-thumb {
+    background-color: #d32f2f;
+    /* Farbe des Scrollbalkens */
+    border-radius: 6px;
+    border: 3px solid #2c2c2c;
+    /* Abstand vom Track */
+}
+
+/* Hover-Effekt auf Scrollbalken */
+.pokedex-container::-webkit-scrollbar-thumb:hover {
+    background-color: #b72a2a;
 }
