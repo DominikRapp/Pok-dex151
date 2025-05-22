@@ -7,129 +7,156 @@
 html,
 body {
     height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+}
+
+body {
     display: flex;
     flex-direction: column;
 }
 
-body {
-    margin: 0;
-}
-
 header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: crimson;
-    padding: 10px 20px;
+    align-items: center;
+    background-color: #d32f2f;
+    color: white;
+    padding: 16px 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    color: black;
-}
-
-header h1 {
-    margin-left: 10px;
+    gap: 12px;
 }
 
 header img {
-    height: 80px;
+    height: 64px;
 }
 
 .search-container {
     display: flex;
-    align-items: center;
     gap: 8px;
 }
 
 .search-container input {
-    padding: 6px 10px;
-    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
     border: none;
-    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
 }
 
 .search-container button {
-    padding: 6px 12px;
-    background-color: white;
-    color: crimson;
+    padding: 8px 14px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 6px;
+    background-color: white;
+    color: #d32f2f;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .pokedex-container {
-    background-color: black;
-    min-height: 300px;
-    color: white;
-    padding: 20px;
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
+    padding: 32px;
+    background-color: #1e1e1e;
 }
 
 .pokemon-card {
-    width: 160px;
-    height: 240px;
-    padding: 12px;
-    margin: 10px;
-    border-radius: 12px;
-    color: black;
+    width: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(255, 255, 255);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    transition: transform 0.2s ease;
+    border: 3px solid white;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-5px);
+}
+
+.pokemon-card-header {
+    background-color: #201b63;
+    padding: 10px 12px;
+    display: flex;
     justify-content: space-between;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    text-align: center;
-}
-
-.pokemon-card img {
-    width: 96px;
-    height: 96px;
-    object-fit: contain;
-}
-
-.pokemon-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-}
-
-.pokemon-card ul li {
-    background: rgba(255,255,255,0.7);
-    padding: 2px 6px;
-    border-radius: 6px;
-    font-size: 12px;
-}
-
-
-footer {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.pokemon-card-header span {
+    font-size: 18px;
+}
+
+.pokemon-card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
+.pokemon-card-image img {
+    height: 132px;
+    width: 132px;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.pokemon-card-image img:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.pokemon-card-footer {
+    background-color: #201b63;
+    padding: 12px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer {
+    background-color: #ebebeb;
+    padding: 20px;
+    color: #000000;
+    text-align: center;
+}
+
 footer img {
-    height: 60px;
+    height: 50px;
 }
 
 .footer-links {
+    margin-top: 12px;
     display: flex;
-    gap: 10px;
-    padding-top: 10px;
+    gap: 12px;
+    justify-content: center;
 }
 
 .footer-links a {
+    color: #000000;
     text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #525252;
+    text-decoration: none;
+}
+
+.collor-black {
     color: black;
 }
