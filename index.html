@@ -7,16 +7,22 @@
     <title>Pokédex</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/element-icon.css">
+    <link rel="stylesheet" href="assets/css/overlay.css">
     <link rel="icon" href="./assets/img/img-pokeball.png" type="image/x-icon">
 </head>
 
 <body onload="loadPokemon()">
 
+    <div id="loading_overlay" class="loading-overlay hidden">
+        <img src="assets/img/loadball.png" alt="Loading" class="spinner">
+        <div class="loading-text">Loading...</div>
+    </div>
+
     <header>
         <div class="header-left">
             <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
-            <h1>Poké<span class="collor-black">dex<h6 class="collor-white">- best <span
-                            class="collor-black">generation</span></h6></span></h1>
+            <h1>Poké<span class="collor-black">dex<h6 class="collor-white">- best <span class="collor-black">generation
+                            151</span></h6></span></h1>
         </div>
         <div class="search-container">
             <input type="search" id="search_input" placeholder="Search for Pokémon…" oninput="filterPokemon()">
@@ -35,6 +41,7 @@
     </div>
 
     <footer>
+        <div id="pokemon_count_display" class="pokemon-count-display"></div>
         <div class="footer-info">
             <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
             <h3>Created: May 2025</h3>
@@ -44,6 +51,7 @@
     <script src="script.js"></script>
     <script src="assets/scripts/pokedex-db.js"></script>
     <script src="assets/scripts/templates.js"></script>
+    <script src="assets/scripts/overlay.js"></script>
 
 </body>
 

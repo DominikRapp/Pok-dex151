@@ -56,6 +56,18 @@ function renderPokemon(pokeData) {
     wrapper.innerHTML = card;
     wrapper.firstElementChild.setAttribute('data-name', pokeData.name.toLowerCase());
     pokedex.insertBefore(wrapper.firstElementChild, loadMoreWrapper);
+    updatePokemonCountDisplay();
+}
+
+function updatePokemonCountDisplay() {
+    const countDisplay = document.getElementById('pokemon_count_display');
+    const cards = document.getElementsByClassName('pokemon-card');
+    const isFiltered = document.getElementById('search_input').value.length >= 3;
+    if (isFiltered) {
+        countDisplay.innerText = `${cards.length} Pokémon found (of ${maxPokemon})`;
+    } else {
+        countDisplay.innerText = `${cards.length} of ${maxPokemon} loaded`;
+    }
 }
 
 function generatePokemonCard(pokeData) {
@@ -192,14 +204,16 @@ function containsSubstring(text, search) {
 }
 
 function renderFilteredPokemon(filteredList) {
-    const containers = document.getElementsByClassName("pokedex-container");
-    const container = containers[0];
+    const container = document.getElementById('pokedex_container');
     const loadMoreWrapper = document.getElementById('load_more_wrapper');
-    container.innerHTML = "";
-    addElementToContainer(container, loadMoreWrapper);
+    const countDisplay = document.getElementById('pokemon_count_display');
+    container.innerHTML = '';
+    container.innerHTML = `
+        <div id="pokemon_count_display">${countDisplay.innerText}</div>${loadMoreWrapper.outerHTML}`;
     for (let pokemonIndex = 0; pokemonIndex < filteredList.length; pokemonIndex++) {
         renderPokemon(filteredList[pokemonIndex]);
     }
+    updatePokemonCountDisplay();
 }
 
 function addElementToContainer(containerElement, elementToInsert) {

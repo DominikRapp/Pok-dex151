@@ -1,11 +1,15 @@
-let offset = 0;
-const limit = 20;
 let isLoading = false;
+let offset = 0;
+const limit = 30;
 const maxPokemon = 151;
 
 async function loadPokemon() {
     if (isLoading) return;
     isLoading = true;
+    const loadingOverlay = document.getElementById('loading_overlay');
+    const loadMoreButton = document.getElementById('load_more_button');
+    loadingOverlay.classList.remove('hidden');
+    loadMoreButton.disabled = true;
     const currentLimit = calculateCurrentLimit();
     const allPokemon = await fetchPokemonList(currentLimit, offset);
     for (let pokemonIndex = 0; pokemonIndex < allPokemon.results.length; pokemonIndex++) {
@@ -14,6 +18,9 @@ async function loadPokemon() {
     }
     updateOffset(currentLimit);
     updateLoadMoreButton();
+    updatePokemonCountDisplay();
+    loadingOverlay.classList.add('hidden');
+    loadMoreButton.disabled = false;
     isLoading = false;
 }
 

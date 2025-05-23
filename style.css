@@ -96,6 +96,15 @@ header img {
     visibility: visible;
 }
 
+.pokemon-count {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 100px;
+    padding: 8px;
+}
+
 .pokedex-container {
     display: flex;
     flex-wrap: wrap;
@@ -178,7 +187,7 @@ header img {
 
 footer {
     background-color: #ebebeb;
-    padding: 20px 0;
+    padding: 10px 0;
     color: #000000;
     text-align: center;
     bottom: 0;
@@ -273,6 +282,64 @@ h6 {
     justify-content: center;
 }
 
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(18, 18, 18, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.spinner {
+    width: 80px;
+    height: auto;
+    animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+    margin-top: 16px;
+    color: #d32f2f;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 0 6px #d32f2f;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 6px #d32f2f;
+    }
+
+    50% {
+        opacity: 0.6;
+        text-shadow: 0 0 12px #ff6659;
+    }
+}
+
 @media (max-width: 502px) {
     header {
         flex-direction: column;
@@ -309,7 +376,7 @@ h6 {
     }
 
     footer {
-        padding: 12px 8px;
+        padding: 2px 0px;
     }
 
     footer img {
