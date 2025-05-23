@@ -10,29 +10,34 @@
     <link rel="icon" href="./assets/img/img-pokeball.png" type="image/x-icon">
 </head>
 
-<body onload="renderAll()">
+<body onload="loadPokemon()">
 
     <header>
         <div class="header-left">
             <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
-            <h1>Poké<span class="collor-black">dex</span></h1>
+            <h1>Poké<span class="collor-black">dex<h6 class="collor-white">- best <span
+                            class="collor-black">generation</span></h6></span></h1>
         </div>
         <div class="search-container">
-            <input type="search" id="search_input" placeholder="Nach Pokémon suchen..." oninput="filterPokemon()">
+            <input type="search" id="search_input" placeholder="Search for Pokémon…" oninput="filterPokemon()">
+            <div id="search_info" class="search-info">
+                <span>min. 3 letters.</span>
+            </div>
         </div>
     </header>
 
-    <div id="pokedex_container" class="pokedex-container"></div>
+    <div id="pokedex_container" class="pokedex-container">
+
+        <div id="load_more_wrapper" class="load-button">
+            <button id="load_more_button" onclick="loadPokemon()">Load More</button>
+        </div>
+
+    </div>
 
     <footer>
         <div class="footer-info">
             <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
             <h3>Created: May 2025</h3>
-        </div>
-        <div class="footer-links">
-            <div><a href="index.html">About us</a></div>|
-            <div><a href="index.html">Terms of use</a></div>|
-            <div><a href="index.html">Privacy</a></div>
         </div>
     </footer>
 

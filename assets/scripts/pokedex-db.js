@@ -1,18 +1,46 @@
-function fetchKantoPokemon() {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-        .then(response => response.json())
-        .then(function (allpokemon) {
-            allpokemon.results.forEach(function (pokemon) {
-                fetchPokemonData(pokemon);
-            })
-        })
+let offset = 0;
+const limit = 20;
+let isLoading = false;
+const maxPokemon = 151;
+
+async function loadPokemon() {
+    if (isLoading) return;
+    isLoading = true;
+    const currentLimit = calculateCurrentLimit();
+    const allPokemon = await fetchPokemonList(currentLimit, offset);
+    for (let pokemonIndex = 0; pokemonIndex < allPokemon.results.length; pokemonIndex++) {
+        const pokemon = allPokemon.results[pokemonIndex];
+        await fetchPokemonData(pokemon);
+    }
+    updateOffset(currentLimit);
+    updateLoadMoreButton();
+    isLoading = false;
 }
 
-async function renderAll() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
-    const allPokemon = await response.json();
-    for (const pokemon of allPokemon.results) {
-        await fetchPokemonData(pokemon);
+function calculateCurrentLimit() {
+    const remaining = maxPokemon - offset;
+    if (limit < remaining) {
+        return limit;
+    } else {
+        return remaining;
+    }
+}
+
+async function fetchPokemonList(limit, offset) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+    return await response.json();
+}
+
+function updateOffset(amount) {
+    offset += amount;
+}
+
+function updateLoadMoreButton() {
+    const loadMoreBtn = document.getElementById("load_more_button");
+    if (offset >= maxPokemon) {
+        loadMoreBtn.style.display = "none";
+    } else {
+        loadMoreBtn.style.display = "block";
     }
 }
 
