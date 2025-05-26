@@ -97,9 +97,14 @@ function renderEvolutionChain(name) {
   return html;
 }
 
-function openOverlay(index) {
+async function openOverlay(index) {
   currentPokemonIndex = index;
-  renderDetailCard(allPokemonData[currentPokemonIndex]);
+  const pokemonData = allPokemonData[currentPokemonIndex];
+  const nameKey = pokemonData.name.toLowerCase();
+  if (!evolutionChains[nameKey]) {
+    await fetchEvolutionChain(pokemonData);
+  }
+  renderDetailCard(pokemonData);
   overlay.classList.remove('hidden');
   disableScroll();
 }
