@@ -14,11 +14,6 @@ body {
     flex-direction: column;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 header,
 footer {
     flex-shrink: 0;
@@ -54,10 +49,6 @@ header {
 
 header img {
     height: 48px;
-}
-
-.search-container {
-    gap: 8px;
 }
 
 .search-container input {
@@ -133,6 +124,7 @@ header img {
     flex-direction: column;
     transition: transform 0.2s ease;
     border: 3px solid rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 .pokemon-card:hover {
@@ -314,6 +306,12 @@ h6 {
 
 .hidden {
     display: none;
+}
+
+input:focus,
+button:focus {
+    outline: 2px solid #d32f2f;
+    outline-offset: 2px;
 }
 
 @keyframes spin {

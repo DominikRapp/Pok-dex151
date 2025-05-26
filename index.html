@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +9,17 @@
     <link rel="stylesheet" href="assets/css/overlay.css">
     <link rel="icon" href="./assets/img/img-pokeball.png" type="image/x-icon">
 </head>
-
 <body onload="loadPokemon()">
-
+    <div id="pokemon_overlay" class="hidden">
+        <button id="overlay_close" class="overlay-close-btn">×</button>
+        <button id="overlay_prev" class="overlay-prev-btn">‹</button>
+        <div id="pokemon_detail_card"></div>
+        <button id="overlay_next" class="overlay-next-btn">›</button>
+    </div>
     <div id="loading_overlay" class="loading-overlay hidden">
         <img src="assets/img/loadball.png" alt="Loading" class="spinner">
         <div class="loading-text">Loading...</div>
     </div>
-
     <header>
         <div class="header-left">
             <img src="./assets/img/img-pokeball.png" alt="Pokeball Bild">
@@ -31,15 +33,12 @@
             </div>
         </div>
     </header>
-
     <div id="pokedex_container" class="pokedex-container">
-
         <div id="load_more_wrapper" class="load-button">
-            <button id="load_more_button" onclick="loadPokemon()">Load More</button>
+            <button id="load_more_button" onclick="loadPokemon()"><b>Load <span
+                        class="collor-black">More</span></b></button>
         </div>
-
     </div>
-
     <footer>
         <div id="pokemon_count_display" class="pokemon-count-display"></div>
         <div class="footer-info">
@@ -47,12 +46,10 @@
             <h3>Created: May 2025</h3>
         </div>
     </footer>
-
     <script src="script.js"></script>
     <script src="assets/scripts/pokedex-db.js"></script>
     <script src="assets/scripts/templates.js"></script>
     <script src="assets/scripts/overlay.js"></script>
-
 </body>
 
 </html>
