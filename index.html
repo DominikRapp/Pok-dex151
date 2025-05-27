@@ -14,10 +14,7 @@
 
 <body onload="loadPokemon()">
     <div id="pokemon_overlay" class="hidden">
-        <button id="overlay_close" class="overlay-close-button">×</button>
-        <button id="overlay_prev" class="overlay-prev-button">‹</button>
         <div id="pokemon_detail_card"></div>
-        <button id="overlay_next" class="overlay-next-button">›</button>
     </div>
     <div id="loading_overlay" class="loading-overlay hidden">
         <img src="assets/img/loadball.png" alt="Loading" class="spinner">
@@ -31,7 +28,8 @@
                                 151</span></h6></span></h1>
             </div>
             <div class="search-container">
-                <input type="search" id="search_input" placeholder="Search for Pokémon…" onkeydown="suppressEnter(event)" oninput="checkInputLength()">
+                <input type="search" id="search_input" placeholder="Search for Pokémon…"
+                    onkeydown="suppressEnter(event)" oninput="checkInputLength()">
                 <button id="search_button" onclick="filterPokemon()" aria-label="Search Pokémon">🔍</button>
                 <div id="search_info" class="search-info">
                     <span>min. 3 letters.</span>
@@ -42,7 +40,8 @@
     <div class="max-width-content">
         <div id="pokedex_container" class="pokedex-container">
             <div id="load_more_wrapper" class="load-button">
-                <button id="load_more_button" onclick="loadPokemon()"><b>Load <span class="color-black">More</span></b></button>
+                <button id="load_more_button" onclick="loadPokemon()"><b>Load <span
+                            class="color-black">More</span></b></button>
             </div>
         </div>
     </div>

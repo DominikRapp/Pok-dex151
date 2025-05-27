@@ -3,9 +3,6 @@ const evolutionChains = {};
 
 const overlay = document.getElementById('pokemon_overlay');
 const detailCard = document.getElementById('pokemon_detail_card');
-const closeButton = document.getElementById('overlay_close');
-const prevButton = document.getElementById('overlay_prev');
-const nextButton = document.getElementById('overlay_next');
 
 function renderDetailCard(pokemonData) {
   const mainType = pokemonData.types[0].type.name;
@@ -14,13 +11,21 @@ function renderDetailCard(pokemonData) {
   const statsHtml = renderStatsHtml(pokemonData.stats);
   const mainHtml = renderMainInfoHtml(pokemonData);
   const evolutionHtml = renderEvolutionChain(pokemonData.name);
-  detailCard.innerHTML = createDetailTemplate(pokemonData, backgroundColor, typesHtml, mainHtml, statsHtml, evolutionHtml);
+  detailCard.innerHTML = createDetailTemplate(
+    pokemonData,
+    backgroundColor,
+    typesHtml,
+    mainHtml,
+    statsHtml,
+    evolutionHtml
+  );
   const buttonMain = document.getElementById('button-main');
   const buttonStats = document.getElementById('button-stats');
   const buttonEvo = document.getElementById('button-evolution');
   buttonMain.onclick = () => activateTab('main');
   buttonStats.onclick = () => activateTab('stats');
   buttonEvo.onclick = () => activateTab('evolution');
+  initOverlay();
 }
 
 function renderTypesHtml(types) {
@@ -75,14 +80,20 @@ function renderEvolutionChain(name) {
 }
 
 function initOverlay() {
-  closeButton.onclick = closeOverlay;
-  nextButton.onclick = showNext;
-  prevButton.onclick = showPrev;
-  overlay.onclick = function (mouseClickEvent) {
-    if (mouseClickEvent.target === overlay) {
-      closeOverlay();
-    }
-  };
+  const closeButton = document.getElementById('overlay_close');
+  const nextButton = document.getElementById('overlay_next');
+  const prevButton = document.getElementById('overlay_prev');
+  const overlay = document.getElementById('pokemon_overlay');
+  if (closeButton) closeButton.onclick = closeOverlay;
+  if (nextButton) nextButton.onclick = showNext;
+  if (prevButton) prevButton.onclick = showPrev;
+  if (overlay) {
+    overlay.onclick = function (mouseClickEvent) {
+      if (mouseClickEvent.target === overlay) {
+        closeOverlay();
+      }
+    };
+  }
 }
 
 initOverlay();

@@ -92,31 +92,49 @@
 .main-info-list {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 10px;
 }
 
-.stats-list,
-.main-info-list {
+.stats-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.main-info-list {
+  list-style: none;
+  padding-bottom: 40px;
   font-size: 16px;
 }
 
 .stat-item {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-item span {
+  width: 80px;
+  text-transform: uppercase;
 }
 
 .stat-bar-background {
-  background-color: #ddd;
-  border-radius: 10px;
+  flex: 1;
+  background-color: #9d9d9d;
+  border-radius: 8px;
+  height: 16px;
+  margin-left: 12px;
   overflow: hidden;
-  height: 12px;
-  margin-top: 4px;
 }
 
 .stat-bar-fill {
-  background-color: rgb(211, 47, 47);
   height: 100%;
+  background-color: #d32f2f;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.3s ease;
 }
 
 .evolution-chain {
@@ -125,7 +143,8 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  padding-top: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .evolution-stage {
@@ -210,16 +229,21 @@
     width: 60px;
   }
 
+  .evolution-chain {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   .stat-item {
     margin-bottom: 2px;
   }
 
-  .main-info-list {
-    gap: 40px;
-  }
-
   .pokemon-image {
     width: 150px;
+  }
+
+  .stats-list {
+    padding-bottom: 0px;
   }
 }
 
@@ -234,6 +258,7 @@
   }
 
   .evolution-chain {
-    padding-top: 67px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
