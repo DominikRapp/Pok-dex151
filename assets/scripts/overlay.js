@@ -5,13 +5,12 @@ const overlay = document.getElementById('pokemon_overlay');
 const detailCard = document.getElementById('pokemon_detail_card');
 
 function renderDetailCard(pokemonData) {
-  const mainType = pokemonData.types[0].type.name;
-  const backgroundColor = getTypeColor(mainType);
+  const backgroundColor = getMainTypeColor(pokemonData);
   const typesHtml = renderTypesHtml(pokemonData.types);
   const statsHtml = renderStatsHtml(pokemonData.stats);
   const mainHtml = renderMainInfoHtml(pokemonData);
   const evolutionHtml = renderEvolutionChain(pokemonData.name);
-  detailCard.innerHTML = createDetailTemplate(
+  const fullHtml = createDetailTemplate(
     pokemonData,
     backgroundColor,
     typesHtml,
@@ -19,13 +18,24 @@ function renderDetailCard(pokemonData) {
     statsHtml,
     evolutionHtml
   );
-  const buttonMain = document.getElementById('button-main');
-  const buttonStats = document.getElementById('button-stats');
-  const buttonEvo = document.getElementById('button-evolution');
-  buttonMain.onclick = () => activateTab('main');
-  buttonStats.onclick = () => activateTab('stats');
-  buttonEvo.onclick = () => activateTab('evolution');
+  updateDetailCard(fullHtml);
+  bindTabButtons();
   initOverlay();
+}
+
+function getMainTypeColor(pokemonData) {
+  const mainType = pokemonData.types[0].type.name;
+  return getTypeColor(mainType);
+}
+
+function updateDetailCard(html) {
+  detailCard.innerHTML = html;
+}
+
+function bindTabButtons() {
+  document.getElementById('button-main').onclick = () => activateTab('main');
+  document.getElementById('button-stats').onclick = () => activateTab('stats');
+  document.getElementById('button-evolution').onclick = () => activateTab('evolution');
 }
 
 function renderTypesHtml(types) {
