@@ -45,29 +45,23 @@ function getTypeColor(type) {
     return typeColors[type];
 }
 
-function renderPokemon(pokeData) {
-    const pokedex = document.getElementById('pokedex_container');
-    const loadMoreWrapper = document.getElementById('load_more_wrapper');
-    const mainType = pokeData.types[0].type.name;
-    const backgroundColor = getTypeColor(mainType);
-    const typeIcons = getTypeIcons(pokeData.types);
-    const card = getPokemonCardTemplate(pokeData, backgroundColor, typeIcons);
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = card;
-    wrapper.firstElementChild.setAttribute('data-name', pokeData.name.toLowerCase());
-    pokedex.insertBefore(wrapper.firstElementChild, loadMoreWrapper);
-    updatePokemonCountDisplay();
+function renderPokemon(pokemonData) {
+  const pokedexContainer = document.getElementById('pokedex_container');
+  const loadMoreWrapper = document.getElementById('load_more_wrapper');
+  const primaryType = pokemonData.types[0].type.name;
+  const backgroundColor = getTypeColor(primaryType);
+  const typeIconsContent = getTypeIcons(pokemonData.types);
+  const pokemonCardContent = getPokemonCardTemplate(pokemonData, backgroundColor, typeIconsContent);
+  const currentContent = pokedexContainer.innerHTML;
+  const loadMoreContent = loadMoreWrapper.outerHTML;
+  const newContent = currentContent.replace(loadMoreContent, pokemonCardContent + loadMoreContent);
+  pokedexContainer.innerHTML = newContent;
 }
 
 function updatePokemonCountDisplay() {
     const countDisplay = document.getElementById('pokemon_count_display');
     const cards = document.getElementsByClassName('pokemon-card');
-    const isFiltered = document.getElementById('search_input').value.length >= 3;
-    if (isFiltered) {
-        countDisplay.innerText = `${cards.length} Pokémon found (of ${maxPokemon})`;
-    } else {
-        countDisplay.innerText = `${cards.length} of ${maxPokemon} loaded`;
-    }
+    countDisplay.innerText = `${cards.length} of ${maxPokemon} loaded`;
 }
 
 function generatePokemonCard(pokeData) {
@@ -100,15 +94,14 @@ function getIconPath(typeName) {
 }
 
 function getTypeIcons(types) {
-    const iconsArray = [];
+    let iconsHtml = '';
     for (let typeIndex = 0; typeIndex < types.length; typeIndex++) {
         const typeInfo = types[typeIndex];
         const typeName = typeInfo.type.name.toLowerCase();
         const iconPath = getIconPath(typeName);
-        const iconTemplate = createTypeIconTemplate(typeName, iconPath);
-        iconsArray.push(iconTemplate);
+        iconsHtml += createTypeIconTemplate(typeName, iconPath);
     }
-    return iconsArray;
+    return iconsHtml;
 }
 
 function handleSearchInput() {
@@ -208,8 +201,7 @@ function renderFilteredPokemon(filteredList) {
     const loadMoreWrapper = document.getElementById('load_more_wrapper');
     const countDisplay = document.getElementById('pokemon_count_display');
     container.innerHTML = '';
-    container.innerHTML = `
-        <div id="pokemon_count_display">${countDisplay.innerText}</div>${loadMoreWrapper.outerHTML}`;
+    container.innerHTML = `<div id="pokemon_count_display">${countDisplay.innerText}</div>${loadMoreWrapper.outerHTML}`;
     for (let pokemonIndex = 0; pokemonIndex < filteredList.length; pokemonIndex++) {
         renderPokemon(filteredList[pokemonIndex]);
     }
@@ -219,4 +211,24 @@ function renderFilteredPokemon(filteredList) {
 function addElementToContainer(containerElement, elementToInsert) {
     const noSpecificPosition = null;
     containerElement.insertBefore(elementToInsert, noSpecificPosition);
+}
+
+function checkInputLength() {
+    const input = document.getElementById('search_input').value.trim();
+    if (input.length < 3) {
+        showAllPokemon();
+    }
+}
+
+function showAllPokemon() {
+    const cards = document.getElementsByClassName('pokemon-card');
+    for (let card of cards) {
+        card.style.display = 'flex';
+    }
+}
+
+function suppressEnter(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
 }

@@ -1,6 +1,6 @@
 let isLoading = false;
 let offset = 0;
-const limit = 10;
+const limit = 20;
 const maxPokemon = 151;
 
 async function loadPokemon() {
@@ -51,11 +51,11 @@ function updateOffset(amount) {
 }
 
 function updateLoadMoreButton() {
-  const loadMoreBtn = document.getElementById("load_more_button");
+  const loadMoreButton = document.getElementById("load_more_button");
   if (offset >= maxPokemon) {
-    loadMoreBtn.style.display = "none";
+    loadMoreButton.style.display = "none";
   } else {
-    loadMoreBtn.style.display = "block";
+    loadMoreButton.style.display = "block";
   }
 }
 
@@ -93,22 +93,22 @@ function findPokemonIdByName(name) {
   return 0;
 }
 
-async function getPokemonId(name) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  const data = await response.json();
-  return data.id;
+async function getPokemonId(pokemonName) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+  const pokemonData = await response.json();
+  return pokemonData.id;
 }
 
-async function buildEvolutionChain(chainData) {
-  const chain = [];
-  let current = chainData;
-  for (let evolutionStage = 0; evolutionStage < 3; evolutionStage++) {
-    if (!current) break;
-    const name = current.species.name;
-    const id = await getPokemonId(name);
-    const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-    chain.push({ name, image });
-    current = current.evolves_to && current.evolves_to.length > 0 ? current.evolves_to[0] : null;
+async function buildEvolutionChain(evolutionChainData) {
+  const evolutionStages = [];
+  let currentStage = evolutionChainData;
+  for (let stage = 0; stage < 3; stage++) {
+    if (!currentStage) break;
+    const pokemonName = currentStage.species.name;
+    const pokemonId = await getPokemonId(pokemonName);
+    const pokemonImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+    evolutionStages.push({ name: pokemonName, image: pokemonImageUrl });
+    currentStage = currentStage.evolves_to && currentStage.evolves_to.length > 0 ? currentStage.evolves_to[0]: null;
   }
-  return chain;
+  return evolutionStages;
 }

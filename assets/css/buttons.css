@@ -1,0 +1,185 @@
+.search-container button {
+    margin-top: 6px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    color: #d32f2f;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: 2px solid #d32f2f;
+    outline-offset: 2px;
+}
+
+.load-button {
+    width: 100%;
+    text-align: center;
+    margin: 24px 0;
+}
+
+#load_more_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#load_more_button:hover {
+    background-color: #b71c1c;
+}
+
+.overlay-close-button {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1100;
+    font-weight: bold;
+    filter: drop-shadow(0 4px 6px rgba(255, 255, 255, 0.3));
+}
+
+.overlay-prev-button {
+    position: fixed;
+    left: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #d32f2f96;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1100;
+    font-size: large;
+    height: 100px;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.overlay-next-button {
+    position: fixed;
+    right: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #d32f2f96;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1100;
+    font-size: large;
+    height: 100px;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.overlay-close-button:hover {
+    color: #b71c1c;
+}
+
+.overlay-prev-button:hover,
+.overlay-next-button:hover {
+    background: #b71c1c;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+    justify-content: center;
+}
+
+.tab-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #bfbfbf;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.tab-buttons button.active {
+    background-color: #d32f2f;
+    color: white;
+    border-color: #b71c1c;
+}
+
+.tab-buttons {
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background-color: #888;
+    color: white;
+}
+
+@media (max-width: 1500px) {
+    .overlay-prev-button {
+        left: 20%;
+    }
+
+    .overlay-next-button {
+        right: 20%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .overlay-prev-button {
+        left: 10%;
+    }
+
+    .overlay-next-button {
+        right: 10%;
+    }
+}
+
+@media (max-width: 750px) {
+    .overlay-prev-button {
+        left: 5%;
+    }
+
+    .overlay-next-button {
+        right: 5%;
+    }
+}
+
+@media (max-width: 650px) {
+    .overlay-close-button {
+        right: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .overlay-prev-button {
+        top: 33%;
+        left: 5%;
+    }
+
+    .overlay-next-button {
+        top: 33%;
+        right: 5%;
+    }
+}
